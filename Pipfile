@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+pandas = "*"
+pyarrow = "*"
+fastparquet = "*"
+matplotlib = "*"
+seaborn = "*"
+wordcloud = "*"
+nltk = "*"
+scikit-learn = "*"
+optuna = "*"
+torch = "*"
+transformers = {extras = ["torch"], version = "*"}
+tensorboard = "*"
+
+[dev-packages]
+black = "*"
+pytest = "*"
+flake8 = "*"
+ipykernel = "*"
+ipywidgets = "*"
+jupyterlab = "*"
+
+[requires]
+python_version = "3.10"

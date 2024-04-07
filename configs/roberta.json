@@ -1,0 +1,37 @@
+{
+    "preprocessing": {
+        "in_file": "data/dataset.csv",
+        "out_folder": "models/roberta",
+        "preprocessing": {
+            "drop_na": true,
+            "drop_duplicates": true,
+            "create_features": {
+                "payload_len": true,
+                "special_chars_count": true
+            },
+            "preprocess_payload": {
+                "lowercase": true,
+                "url_decode": true,
+                "html_decode": true
+            },
+            "train_test_split": true
+        }
+    },
+    "bert": {
+        "train_file": "models/roberta/train/processed.parquet",
+        "test_file": "models/roberta/test/processed.parquet",
+        "roberta_model": "roberta-base",
+        "model_params": {
+            "hidden_dropout_prob": 0.1,
+            "attention_probs_dropout_prob": 0.1
+        },
+        "training_args": {
+            "num_train_epochs": 5,
+            "per_device_train_batch_size": 32,
+            "per_device_eval_batch_size": 64,
+            "logging_steps": 10,
+            "learning_rate": 5e-5
+        },
+        "output_dir": "models/roberta/runs"
+    }
+}

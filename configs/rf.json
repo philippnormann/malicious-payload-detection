@@ -1,0 +1,48 @@
+{
+    "preprocessing": {
+        "in_file": "data/dataset.csv",
+        "out_folder": "models/rf",
+        "preprocessing": {
+            "drop_na": true,
+            "drop_duplicates": true,
+            "create_features": {
+                "payload_len": true,
+                "special_chars_count": true
+            },
+            "preprocess_payload": {
+                "lowercase": true,
+                "url_decode": true,
+                "html_decode": true
+            },
+            "train_test_split": true
+        }
+    },
+    "tfidf": {
+        "train_file": "models/rf/train/processed.parquet",
+        "test_file": "models/rf/test/processed.parquet",
+        "output_train_tfidf": "models/rf/train/tfidf.parquet",
+        "output_test_tfidf": "models/rf/test/tfidf.parquet",
+        "tfidf_vectorizer": "models/rf/tfidf_vectorizer.pickle",
+        "tfidf_params": {
+            "max_features": 3000
+        }
+    },
+    "random_forest": {
+        "train_file": "models/rf/train/tfidf.parquet",
+        "test_file": "models/rf/test/tfidf.parquet",
+        "model_params": {
+            "n_estimators": 100,
+            "criterion": "entropy",
+            "max_depth": 500,
+            "max_features": "sqrt",
+            "max_leaf_nodes": null,
+            "min_samples_split": 5,
+            "min_samples_leaf": 1,
+            "bootstrap": true,
+            "random_state": 42,
+            "n_jobs": -1,
+            "verbose": 0
+        },
+        "output_dir": "models/rf/runs"
+    }
+}
